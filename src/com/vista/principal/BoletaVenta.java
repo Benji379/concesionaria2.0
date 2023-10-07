@@ -15,12 +15,28 @@ public class BoletaVenta extends javax.swing.JFrame {
     ResultSet resultado;
     PreparedStatement consulta;
     DefaultTableModel modelo;
+    String CodigoVenta = moduloListaVentas.codigoVenta;
+    String codigoEmpleado = moduloListaVentas.codigoEmpleado;
+    String codigoCliente = moduloListaVentas.codigoCliente;
+    String codigoAuto = moduloListaVentas.codigoAuto;
+
+    String empleado = ModeloDAO.consultarDato("empleados", "dni", codigoEmpleado, "nombre", "String").toString() + " "
+            + ModeloDAO.consultarDato("empleados", "dni", codigoEmpleado, "apellido", "String").toString();
+
+    String nombreCliente = ModeloDAO.consultarDato("cliente", "dniCliente", codigoCliente, "nombre", "String").toString();
+    String apellidoCliente = ModeloDAO.consultarDato("cliente", "dniCliente", codigoCliente, "apellido", "String").toString();
+    String direccion = ModeloDAO.consultarDato("cliente", "dniCliente", codigoCliente, "direccion", "String").toString();
+
+    String placa = codigoAuto;
+    String marca = ModeloDAO.consultarDato("vehiculos", "placa", codigoAuto, "marca", "String").toString();
+    String color = ModeloDAO.consultarDato("vehiculos", "placa", codigoAuto, "color", "String").toString();
 
     public BoletaVenta() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setBackground(new Color(0, 0, 0, 0));
-        consultar(moduloListaVentas.codigoVenta);
+        consultar(CodigoVenta);
+//        System.out.println(CodigoVenta);
         double acum = 0;
         for (int i = 0; i < tableDark1.getRowCount(); i++) {
             acum = acum + Double.parseDouble(tableDark1.getValueAt(i, 3).toString());
@@ -31,33 +47,29 @@ public class BoletaVenta extends javax.swing.JFrame {
     private void consultar(String codigoVenta) {
         try {
             conexion = new ConexionSQL().conexion();
-            consulta = conexion.prepareStatement("SELECT emple.dni as dniEmpleado ,clie.nombre as nombreCliente ,clie.apellido as apellidoCliente, clie.direccion as direccionCliente, vehi.placa as placa,vehi.marca as marca,vehi.color as color,prod.nombre as nombreProducto,ventaP.cantidad as cantidadProducto,ventaP.total as totalProducto,prod.precio as precioProducto,vent.total as totalVenta FROM ventaproductos ventaP inner join venta vent on ventaP.idVenta=vent.idVenta inner join productos prod on prod.codigoProducto = ventaP.codigoProducto inner join cliente clie on vent.cliente = clie.dniCliente inner join vehiculos vehi on vehi.placa = vent.placaVehiculo inner join empleados emple on emple.dni = vent.trabajador WHERE ventaP.idVenta=?");
+            consulta = conexion.prepareStatement("SELECT * FROM ventaProductos ventaP inner join productos prod on ventaP.codigoProducto = prod.codigoProducto WHERE idVenta=?");
             consulta.setString(1, codigoVenta);
             resultado = consulta.executeQuery();
             Object datos[] = new Object[4];
             modelo = (DefaultTableModel) tableDark1.getModel();
             modelo.setRowCount(0);
             while (resultado.next()) {
-                datos[0] = resultado.getString("nombreProducto");
-                datos[1] = resultado.getDouble("precioProducto");
-                datos[2] = resultado.getInt("cantidadProducto");
-                datos[3] = resultado.getDouble("totalProducto");
+                datos[0] = resultado.getString("nombre");
+                datos[1] = resultado.getDouble("precio");
+                datos[2] = resultado.getInt("cantidad");
+                datos[3] = resultado.getDouble("total");
                 modelo.addRow(datos);
             }
-            if (resultado.next()) {
-                String nombreEmpleado = ModeloDAO.getDatos(resultado.getString("dniEmpleado"), "nombre")
-                        + " " + ModeloDAO.getDatos(resultado.getString("dniEmpleado"), "apellido");
-                txtNombreEmpleado.setText(nombreEmpleado);
+            txtNombreEmpleado.setText(empleado);
 
-                txtNombreCliente.setText(resultado.getString("nombreCliente"));
-                txtApellidoCliente.setText(resultado.getString("apellidoCliente"));
-                txtDireccionCliente.setText("direccionCliente");
+            txtNombreCliente.setText(nombreCliente);
+            txtApellidoCliente.setText(apellidoCliente);
+            txtDireccionCliente.setText(direccion);
 
-                txtPlaca.setText(resultado.getString("placa"));
-                txtMarca.setText(resultado.getString("marca"));
-                txtColor.setText(resultado.getString("color"));
-                tableDark1.setModel(modelo);
-            }
+            txtPlaca.setText(placa);
+            txtMarca.setText(marca);
+            txtColor.setText(color);
+            tableDark1.setModel(modelo);
         } catch (SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
         }
@@ -137,6 +149,7 @@ public class BoletaVenta extends javax.swing.JFrame {
 
         txtNombreCliente.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtNombreCliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelRound6.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 158, 27));
 
         jLabel27.setFont(new java.awt.Font("Century", 1, 22)); // NOI18N
@@ -146,10 +159,12 @@ public class BoletaVenta extends javax.swing.JFrame {
 
         txtDireccionCliente.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtDireccionCliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtDireccionCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelRound6.add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 158, 27));
 
         txtApellidoCliente.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtApellidoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtApellidoCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelRound6.add(txtApellidoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 158, 27));
 
         txtTotal.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -159,10 +174,12 @@ public class BoletaVenta extends javax.swing.JFrame {
 
         txtMarca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtMarca.setForeground(new java.awt.Color(255, 255, 255));
+        txtMarca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelRound6.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 158, 27));
 
         txtColor.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtColor.setForeground(new java.awt.Color(255, 255, 255));
+        txtColor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelRound6.add(txtColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 158, 27));
 
         BarraTitulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -193,14 +210,15 @@ public class BoletaVenta extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Century", 1, 22)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Vehículo");
-        panelRound6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 103, 33));
+        panelRound6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 103, 33));
 
         txtNombreEmpleado.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtNombreEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound6.add(txtNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 158, 27));
+        panelRound6.add(txtNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 180, 27));
 
         txtPlaca.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtPlaca.setForeground(new java.awt.Color(255, 255, 255));
+        txtPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panelRound6.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 158, 27));
 
         getContentPane().add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 550));

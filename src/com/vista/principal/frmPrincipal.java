@@ -6,7 +6,9 @@ import java.awt.Cursor;
 import javax.swing.JPanel;
 
 public class frmPrincipal extends javax.swing.JFrame {
-
+    
+    public static String rango = ModeloDAO.getRangoEmpleado(ModeloDAO.DNI_EMPLEADO);
+    
     public frmPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -14,7 +16,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         UIController.MostrarPanel(CONTENEDOR, new pnlHome(), 865, 576);
         UIController.removerBordeBlanco(scrollContenedor);
         pictureBox1.setCursor(new Cursor(12));
-        txtRango.setText(ModeloDAO.getRangoEmpleado(ModeloDAO.DNI_EMPLEADO));
+        txtRango.setText(rango);
+        
+        if(rango.equalsIgnoreCase("empleado")){
+            btnTrabajador.setVisible(false);
+        }
+        
     }
     
     private void initPanel() {

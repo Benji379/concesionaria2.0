@@ -106,11 +106,17 @@ public class moduloListaVentas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public static String codigoVenta;
+    public static String codigoEmpleado;
+    public static String codigoCliente;
+    public static String codigoAuto;
 
     private void tablaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasMouseClicked
         filaSeleccionada = tablaVentas.getSelectedRow();
         if (evt.getClickCount() == 2) {
             codigoVenta = tablaVentas.getValueAt(filaSeleccionada, 0).toString();
+            codigoEmpleado = tablaVentas.getValueAt(filaSeleccionada, 1).toString();
+            codigoCliente = tablaVentas.getValueAt(filaSeleccionada, 2).toString();
+            codigoAuto = tablaVentas.getValueAt(filaSeleccionada, 3).toString();
             BoletaVenta abrir = new BoletaVenta();
             abrir.setVisible(true);
         }

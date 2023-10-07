@@ -36,6 +36,11 @@ public final class pnlHome extends javax.swing.JPanel {
         txtFecha = new javax.swing.JLabel();
         txtDia = new javax.swing.JLabel();
         panelRound1 = new com.modelo.UIDesinger.PanelRound();
+        btnExcel = new button.Button();
+        btnArchivos = new button.Button();
+        btnCalculadora = new button.Button();
+        btnBlockNotas = new button.Button();
+        btnNavegador = new button.Button();
 
         setBackground(new java.awt.Color(20, 20, 20));
         setPreferredSize(new java.awt.Dimension(865, 588));
@@ -113,15 +118,94 @@ public final class pnlHome extends javax.swing.JPanel {
                     .addGap(76, 76, 76)))
         );
 
+        panelRound1.setBackground(new java.awt.Color(20, 20, 20));
+
+        btnExcel.setBackground(new java.awt.Color(35, 35, 35));
+        btnExcel.setForeground(new java.awt.Color(51, 51, 51));
+        btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/img/icons/excel.png"))); // NOI18N
+        btnExcel.setCurrentCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExcel.setShadowColor(new java.awt.Color(0, 0, 0));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
+        btnArchivos.setBackground(new java.awt.Color(35, 35, 35));
+        btnArchivos.setForeground(new java.awt.Color(51, 51, 51));
+        btnArchivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/img/icons/carpeta.png"))); // NOI18N
+        btnArchivos.setCurrentCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnArchivos.setShadowColor(new java.awt.Color(0, 0, 0));
+        btnArchivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArchivosActionPerformed(evt);
+            }
+        });
+
+        btnCalculadora.setBackground(new java.awt.Color(35, 35, 35));
+        btnCalculadora.setForeground(new java.awt.Color(51, 51, 51));
+        btnCalculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/img/icons/calculadora.png"))); // NOI18N
+        btnCalculadora.setCurrentCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCalculadora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCalculadora.setShadowColor(new java.awt.Color(0, 0, 0));
+        btnCalculadora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculadoraActionPerformed(evt);
+            }
+        });
+
+        btnBlockNotas.setBackground(new java.awt.Color(35, 35, 35));
+        btnBlockNotas.setForeground(new java.awt.Color(51, 51, 51));
+        btnBlockNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/img/icons/notas.png"))); // NOI18N
+        btnBlockNotas.setCurrentCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBlockNotas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBlockNotas.setShadowColor(new java.awt.Color(0, 0, 0));
+        btnBlockNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBlockNotasActionPerformed(evt);
+            }
+        });
+
+        btnNavegador.setBackground(new java.awt.Color(35, 35, 35));
+        btnNavegador.setForeground(new java.awt.Color(51, 51, 51));
+        btnNavegador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/img/icons/web.png"))); // NOI18N
+        btnNavegador.setCurrentCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNavegador.setShadowColor(new java.awt.Color(0, 0, 0));
+        btnNavegador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNavegadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBlockNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalculadora, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNavegador, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnCalculadora, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(btnBlockNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btnNavegador, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -156,8 +240,33 @@ public final class pnlHome extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchivosActionPerformed
+        ActionUtils.AccederEnlace("explorer");
+    }//GEN-LAST:event_btnArchivosActionPerformed
+
+    private void btnNavegadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavegadorActionPerformed
+        ActionUtils.AccederEnlace("chrome");
+    }//GEN-LAST:event_btnNavegadorActionPerformed
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        ActionUtils.AccederEnlace("excel");
+    }//GEN-LAST:event_btnExcelActionPerformed
+
+    private void btnCalculadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculadoraActionPerformed
+        ActionUtils.AccederEnlace("calc");
+    }//GEN-LAST:event_btnCalculadoraActionPerformed
+
+    private void btnBlockNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlockNotasActionPerformed
+        ActionUtils.AccederEnlace("notepad");
+    }//GEN-LAST:event_btnBlockNotasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private button.Button btnArchivos;
+    private button.Button btnBlockNotas;
+    private button.Button btnCalculadora;
+    private button.Button btnExcel;
+    private button.Button btnNavegador;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private com.modelo.UIDesinger.PanelRound panelRound1;

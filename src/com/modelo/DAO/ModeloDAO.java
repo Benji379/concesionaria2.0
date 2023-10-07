@@ -96,4 +96,33 @@ public class ModeloDAO {
         return false;
     }
 
+    public static Object consultarDato(String nombreTabla, String nombreColumnaDatoBuscar, String datoBuscar, String nombreColumnDatoRetornar, String tipoDatoRetorno) {
+        Connection conexion;
+        ResultSet resultado;
+        PreparedStatement consulta;
+
+        try {
+            conexion = new ConexionSQL().conexion();
+            consulta = conexion.prepareStatement("SELECT * FROM " + nombreTabla + " WHERE " + nombreColumnaDatoBuscar + "=?");
+            consulta.setString(1, datoBuscar);
+            resultado = consulta.executeQuery();
+            if (resultado.next()) {
+                switch (tipoDatoRetorno) {
+                    case "String" -> {
+                        return resultado.getString(nombreColumnDatoRetornar);
+                    }
+                    case "Double" -> {
+                        return resultado.getDouble(nombreColumnDatoRetornar);
+                    }
+                    case "Int" -> {
+                        return resultado.getInt(nombreColumnDatoRetornar);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return null;
+    }
+
 }

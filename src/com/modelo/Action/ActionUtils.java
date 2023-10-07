@@ -1,11 +1,21 @@
 package com.modelo.Action;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class ActionUtils {
+
+    public static void AccederEnlace(String enlace) {
+        String url = "C:\\Windows\\System32\\cmd.exe /K start " + enlace;
+        try {
+            Runtime.getRuntime().exec(url);
+        } catch (IOException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+    }
 
     public static String getDiaSemana() {
         Calendar calendar = Calendar.getInstance();

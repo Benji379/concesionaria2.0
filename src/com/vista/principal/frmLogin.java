@@ -1,14 +1,8 @@
 package com.vista.principal;
 
-import com.modelo.DAO.ConexionSQL;
 import com.modelo.DAO.ModeloDAO;
 import com.modelo.UIDesinger.UIController;
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class frmLogin extends javax.swing.JFrame {
 
@@ -130,7 +124,6 @@ public class frmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void btnNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVentaActionPerformed
         if (ModeloDAO.usuarioValido(txtUsuario.getText(), txtContraseña.getText())) {
             frmPrincipal abrir = new frmPrincipal();
@@ -138,7 +131,6 @@ public class frmLogin extends javax.swing.JFrame {
             this.setVisible(false);
             frmPrincipal.txtRango.setText(ModeloDAO.getRangoEmpleado(ModeloDAO.DNI_EMPLEADO));
         }
-
     }//GEN-LAST:event_btnNuevaVentaActionPerformed
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
