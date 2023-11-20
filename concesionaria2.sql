@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2023 a las 07:58:57
+-- Tiempo de generación: 20-11-2023 a las 23:47:02
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -66,8 +66,8 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`dni`, `nombre`, `apellido`, `sexo`, `correo`, `direccion`, `contraseña`, `rango`, `fecha`) VALUES
-('71828293', 'Maria', 'Cueva', 'M', 'maria@gmail.com', 'mz e lt. 21 los olivos', '123', 'Empleado', '2023-10-04'),
-('72839212', 'Benjamin', 'Atoche', 'M', 'benjamin@gmail.com', 'Mz e lt 22', '123', 'Administrador', '2023-10-02');
+('12345678', 'Benjamin', 'Atoche', 'M', 'benjamin@gmail.com', 'Mz e lt 22', '123', 'Administrador', '2023-10-02'),
+('71828293', 'Maria', 'Cueva', 'M', 'maria@gmail.com', 'mz e lt. 21 los olivos', '123', 'Empleado', '2023-10-04');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ CREATE TABLE `venta` (
 
 INSERT INTO `venta` (`idVenta`, `trabajador`, `cliente`, `placaVehiculo`, `total`, `fecha`) VALUES
 ('00000001', '71828293', '72839215', '234-DSG', '102.00', '2023-01-06'),
-('00000002', '72839212', '72839215', '234-DSG', '185.30', '2023-01-07');
+('00000002', '12345678', '72839215', '234-DSG', '185.30', '2023-01-07');
 
 -- --------------------------------------------------------
 
